@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儿童识字小报生成器</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 页头 -->
+        <header>
+            <h1>🎨 儿童识字小报生成器</h1>
+            <p class="subtitle">适合 5-9 岁孩子的识字学习小报</p>
+        </header>
+
+        <!-- API 密钥配置区域 -->
+        <section class="api-config-section">
+            <h2>🔑 API 密钥配置</h2>
+            <div class="api-status" id="apiStatus">
+                <span class="status-icon">⚠️</span>
+                <span class="status-text">未配置</span>
+            </div>
+
+            <div class="form-group">
+                <label for="kieAIKey">Nano Banana Pro API Key</label>
+                <input type="password" id="kieAIKey" placeholder="输入您的 Kie AI API Key" autocomplete="off">
+                <small>用于生成图像和词汇（获取密钥：https://kie.ai/api-key）</small>
+            </div>
+
+            <button class="btn btn-primary" id="saveKeysBtn">💾 保存 API 密钥</button>
+        </section>
+
+        <hr>
+
+        <!-- 生成表单区域 -->
+        <section class="generate-section">
+            <h2>✨ 生成识字小报</h2>
+
+            <div class="form-group">
+                <label for="topicInput">主题/场景</label>
+                <input type="text" id="topicInput" placeholder="例如：超市、医院、公园、学校...">
+                <small>输入一个场景或主题</small>
+            </div>
+
+            <div class="form-group">
+                <label for="titleInput">小报标题</label>
+                <input type="text" id="titleInput" placeholder="例如：《走进超市》">
+                <small>小报的大标题</small>
+            </div>
+
+            <button class="btn btn-success btn-large" id="generateBtn" disabled>
+                🎨 生成识字小报
+            </button>
+        </section>
+
+        <!-- 加载状态 -->
+        <div class="loading-section" id="loadingSection" style="display: none;">
+            <div class="spinner"></div>
+            <p class="loading-text" id="loadingText">正在生成中...</p>
+        </div>
+
+        <!-- 结果展示区域 -->
+        <section class="result-section" id="resultSection" style="display: none;">
+            <h2>🖼️ 生成结果</h2>
+
+            <div class="image-container">
+                <img id="resultImage" alt="生成的识字小报" title="右键点击图片可另存为">
+                <p class="download-tip" style="text-align: center; color: #6B7280; font-size: 0.9rem; margin-top: 10px;">
+                    💡 提示：如果下载按钮失败，可以右键点击图片选择"图片另存为"
+                </p>
+            </div>
+
+            <div class="result-actions">
+                <button class="btn btn-primary" id="downloadBtn">📥 下载图片</button>
+                <button class="btn btn-secondary" id="newGenerateBtn">🔄 生成新的</button>
+            </div>
+
+            <!-- 词汇列表展示 -->
+            <div class="vocabulary-list" id="vocabularyList">
+                <h3>📝 包含的词汇</h3>
+                <div id="vocabularyContent"></div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer>
+            <p>💡 提示：API 密钥仅保存在您的浏览器本地，不会上传到任何服务器</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript 文件 -->
+    <script src="js/vocabulary-database.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/vocabulary.js"></script>
+    <script src="js/prompt.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
